@@ -29,7 +29,7 @@ public class TitleAbstractRepository : ITitleAbstractRepository
 
         if (titleAbstractInDb == null)
         {
-            throw new KeyNotFoundException($"Employee with id {id} was not found");
+            throw new KeyNotFoundException($"Title Abstract with id {id} was not found");
         }
 
         return titleAbstractInDb;

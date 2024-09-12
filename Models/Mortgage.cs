@@ -141,7 +141,7 @@ namespace abstractmaker_api.Models
         /// <summary>
         /// Collection of assignment records associated with the mortgage.
         /// </summary>
-        public ICollection<Assignments> Assignments { get; set; }
+        public ICollection<Assignments>? Assignments { get; set; }
 
         /// <summary>
         /// Additional details for the mortgage.

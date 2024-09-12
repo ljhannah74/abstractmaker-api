@@ -14,10 +14,5 @@ namespace abstractmaker_api.Models
         /// Name of the product type (e.g., Full Title Search, Current Owner Search).
         /// </summary>
         public string ProductTypeName { get; set; }
-
-        /// <summary>
-        /// Collection of title abstracts associated with this product type.
-        /// </summary>
-        public ICollection<TitleAbstract> TitleAbstracts { get; set; }
     }
 }

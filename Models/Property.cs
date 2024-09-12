@@ -40,9 +40,6 @@ namespace abstractmaker_api.Models
         /// </summary>
         public string County { get; set; }
 
-        /// <summary>
-        /// Collection of title abstracts associated with this property.
-        /// </summary>
-        public ICollection<TitleAbstract> TitleAbstracts { get; set; }
     }
 }
+

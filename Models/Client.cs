@@ -14,11 +14,5 @@ namespace abstractmaker_api.Models
         /// Name of the client, which could be an individual or a company.
         /// </summary>
         public string ClientName { get; set; }
-
-        /// <summary>
-        /// Collection of title abstracts associated with the client.
-        /// Represents the abstract reports created for this client.
-        /// </summary>
-        public ICollection<TitleAbstract> TitleAbstracts { get; set; }
     }
 }

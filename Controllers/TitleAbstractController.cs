@@ -23,4 +23,29 @@ public class TitleAbstractController : ControllerBase
 
         return Ok(allTitleAbstracts);
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<TitleAbstract>> GetTitleAbstractById(int id)
+    {
+        var titleAbstract = await _titleAbstractRepository.GetByIdAsync(id);
+
+        if (titleAbstract == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(titleAbstract);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<TitleAbstract>> CreateTitleAbstract(TitleAbstract titleAbstract)
+    {
+        if (ModelState.IsValid == false)
+        {
+            return BadRequest();
+        }
+
+        await _titleAbstractRepository.AddTitleAbstractAsync(titleAbstract);
+        return CreatedAtAction(nameof(GetTitleAbstractById), new { id = titleAbstract.TitleAbstractID }, titleAbstract);
+    }
 }
