@@ -24,10 +24,23 @@ public class TitleAbstractController : ControllerBase
         return Ok(allTitleAbstracts);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<ActionResult<TitleAbstract>> GetTitleAbstractById(int id)
     {
         var titleAbstract = await _titleAbstractRepository.GetByIdAsync(id);
+
+        if (titleAbstract == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(titleAbstract);
+    }
+
+    [HttpGet("{orderId}")]
+    public async Task<ActionResult<TitleAbstract>> GetTitleAbstractByOrderId(string orderId)
+    {
+        var titleAbstract = await _titleAbstractRepository.GetByOrderNo(orderId);
 
         if (titleAbstract == null)
         {
@@ -46,6 +59,31 @@ public class TitleAbstractController : ControllerBase
         }
 
         await _titleAbstractRepository.AddTitleAbstractAsync(titleAbstract);
+        return CreatedAtAction(nameof(GetTitleAbstractById), new { id = titleAbstract.TitleAbstractID }, titleAbstract);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteTitleAbstractById(int id)
+    {
+        await _titleAbstractRepository.DeleteTitleAbstractAsync(id);
+        return NoContent();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<TitleAbstract>> UpdateTitleAbstractAsync(int id, TitleAbstract titleAbstract)
+    {
+        if (id != titleAbstract.TitleAbstractID)
+        {
+            return BadRequest();
+        }
+
+        if (ModelState.IsValid == false)
+        {
+            return BadRequest();
+        }
+
+        await _titleAbstractRepository.UpdateTitleAbstractAsync(titleAbstract);
+
         return CreatedAtAction(nameof(GetTitleAbstractById), new { id = titleAbstract.TitleAbstractID }, titleAbstract);
     }
 }
