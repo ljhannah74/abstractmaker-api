@@ -7,15 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
-    new MySqlServerVersion(new Version(10, 4, 14)));
+     options.UseSqlite(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    );
 });
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyCors", builder =>
     {
-        builder.WithOrigins("httpL//localhost:4200")
+        builder.AllowAnyOrigin()
         .AllowAnyMethod()
         .AllowAnyHeader();
     });
