@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace abstractmaker_api.Controllers;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class TitleAbstractController : ControllerBase
 {
